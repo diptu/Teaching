@@ -1,0 +1,225 @@
+#ifndef BINARYSEARCHTREE_H_INCLUDED
+#define BINARYSEARCHTREE_H_INCLUDED
+#include "QueueLinkList.h"
+template <class ItemType>
+struct TreeNode
+{
+ItemType info;
+TreeNode* left;
+TreeNode* right;
+};
+enum OrderType {PRE_ORDER, IN_ORDER,
+POST_ORDER};
+template <class ItemType>
+class TreeType
+{
+public:
+TreeType();
+~TreeType();
+void MakeEmpty();
+bool IsEmpty();
+bool IsFull();
+int LengthIs();
+void RetrieveItem(ItemType& item,
+bool& found);
+void InsertItem(ItemType item);
+void DeleteItem(ItemType item);
+void ResetTree(OrderType order);
+void GetNextItem(ItemType& item,
+OrderType order, bool& finished);
+void Print();
+private:
+TreeNode<ItemType>* root;
+QueType<ItemType> preQue;
+QueType<ItemType> inQue;
+QueType<ItemType> postQue;
+};
+#endif // BINARYSEARCHTREE_H_INCLUDED
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include"BinarySearchTree.h"
+#include"QueueLinkList.cpp"
+#include<iostream>
+using namespace std;
+
+template<class ItemType>
+TreeType<ItemType>::TreeType()
+{
+    root = NULL ;
+}
+
+template<class ItemType>
+void Destroy(TreeNode<ItemType>*& tree)
+{
+    if(tree != NULL)
+    {
+        Destroy(tree->left);
+        Destroy(tree->right);
+        delete tree;
+        tree = NULL;
+    }
+}
+
+template<class ItemType>
+TreeType<ItemType>::~TreeType()
+{
+    Destroy(root);
+}
+
+template<class ItemType>
+void TreeType<ItemType>::MakeEmpty()
+{
+    Destroy(root);
+}
+
+
+template<class ItemType>
+bool TreeType<ItemType>::IsEmpty()
+{
+    return root == NULL;
+}
+
+template<class ItemType>
+bool TreeType<ItemType>::IsFull()
+{
+    TreeNode <ItemType> *location;
+    try
+    {
+        location = new TreeNode<ItemType>;
+        delete location;
+        return false;
+
+    }
+    catch(bad_alloc& exception)
+    {
+        return true;
+    }
+}
+
+template<class ItemType>
+int countNodes(TreeNode<ItemType> *tree)
+{
+    if(tree == NULL)
+        return 0;
+    else
+        return countNodes(tree->left)+countNodes(tree->right)+1;
+}
+
+
+template<class ItemType>
+int TreeType<ItemType>::LengthIs()
+{
+    return countNodes(root);
+}
+
+template<class ItemType>
+void Retrieve(TreeNode<ItemType> *tree,ItemType &item,bool &found)
+{
+    if(tree == NULL)
+        found = false ;
+    else if(item <tree->info)
+        Retrieve(tree->left,item,found);
+    else if(item > tree->info)
+        Retrieve(tree->right,item,found);
+    else
+        {
+            item = tree->info ;
+            found = true ;
+        }
+}
+
+
+template<class ItemType>
+void TreeType<ItemType>::RetrieveItem(ItemType &item,bool &found)
+{
+    Retrieve(root,item,found);
+}
+
+
+template<class ItemType>
+void Insert(TreeNode <ItemType> *&tree,ItemType item)
+{
+    if(tree == NULL)
+    {
+        tree = new TreeNode<ItemType>;
+        tree->right = NULL;
+        tree->left = NULL;
+        tree->info = item ;
+    }
+    else if(item < tree->info)
+        Insert(tree->left,item);
+    else
+        Insert(tree->right,item);
+}
+
+template<class ItemType>
+void TreeType<ItemType>::InsertItem(ItemType item)
+{
+    Insert(root,item);
+}
+
+
+template<class ItemType>
+void Delete(TreeNode<ItemType> *&tree,ItemType item)
+{
+    if(item < tree->info)
+        Delete(tree->left,item);
+     else if(item < tree->info)
+        Delete(tree->right,item);
+    else
+        Delete(tree);
+}
+
+template<class ItemType>
+void DeleteNode(TreeNode<ItemType> *&tree)
+{
+    ItemType data;
+    TreeNode<ItemType> *temptr;
+    
+    temptr = tree ;
+    if(tree->left == NULL)
+    {
+        tree = tree->right;
+        delete temptr;
+    }
+    else if(tree->right == NULL)
+    {
+        tree = tree->left;
+        delete temptr;
+    }
+    else
+    {
+        GetPredecessor(tree->left,data);
+        tree->info = data ;
+        delete(tree->left,data);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

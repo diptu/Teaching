@@ -1,0 +1,225 @@
+Student Data.....
+
+--------->Student.h
+
+
+#ifndef STUDENT_STUDENT_H
+#define STUDENT_STUDENT_H
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student
+{
+private:
+    string name;
+    int id;
+    float cgpa;
+    string dept;
+public:
+    Student()
+    {
+        id=cgpa=0;
+        name=dept="";
+    }
+    Student(string,int,float,string);
+
+    void print();
+    string getName()
+    {
+        return name;
+    }
+    int getId()
+    {
+        return id;
+    }
+    float getCgpa()
+    {
+        return cgpa;
+    }
+    string getDept()
+    {
+        return dept;
+    }
+
+
+};
+
+class StudentData
+{
+    Student st[100] ;
+    int numSt;
+public:
+    StudentData()
+    {
+        numSt = 0;
+    }
+
+    StudentData(int n);
+    void print();
+    void add(Student s);
+    int searchStudent(int id);
+    int searchStudent(string name);
+    Student getStudent(int id);
+    void deleteStudent(int id);
+
+};
+#endif //STUDENT_STUDENT_H
+
+
+---------->Student.cpp
+
+
+#include "Student.h"
+#include <iostream>
+using namespace std;
+#include <string>
+
+Student::Student(string n, int i, float c, string d)
+{
+    name = n;
+    id = i;
+    cgpa = c;
+    dept = d;
+}
+void Student::print()
+{
+    cout<<"Name: "<<name<<"\nID: "<<id<<"\nCGPA: "<<cgpa<<"\nDepartment: "<<dept<<endl;
+}
+
+void StudentData::print()
+{
+    for ( int i= 0;  i < numSt ; i++)
+    {
+        cout<<"Name: "<<st[i].getName()<<endl;
+        cout<<"ID: "<<st[i].getId()<<endl;
+        cout<<"CGPA: "<<st[i].getCgpa()<<endl;
+        cout<<"Dept: "<<st[i].getDept()<<endl<<endl;
+    }
+    //cout<<"Name: "<<st->getName()<<"\nID: "<<st->getId()<<"\nCGPA: "<<st->getCgpa()<<"\nDepartment: "<<st->getDept()<<endl;
+}
+
+StudentData::StudentData(int n)
+{
+    numSt = n;
+}
+void StudentData::add(Student s)
+{
+    st[numSt] = s;
+    numSt++ ;
+}
+int StudentData::searchStudent(int id)
+{
+    for ( int i= 0;  i < numSt ; i++)
+    {
+        if (st[i].getId() == id)
+        {
+            cout<<"Name: "<<st[i].getName()<<endl;
+            cout<<"ID: "<<st[i].getId()<<endl;
+            cout<<"CGPA: "<<st[i].getCgpa()<<endl;
+            cout<<"Dept: "<<st[i].getDept()<<endl<<endl;
+            return i;
+        }
+
+    }
+    return -1;
+}
+
+int StudentData::searchStudent(string name)
+{
+    int n=0;
+    for ( int i= 0;  i < numSt ; i++)
+    {
+        if (st[i].getName() == name)
+        {
+            cout<<"Name: "<<st[i].getName()<<endl;
+            cout<<"ID: "<<st[i].getId()<<endl;
+            cout<<"CGPA: "<<st[i].getCgpa()<<endl;
+            cout<<"Dept: "<<st[i].getDept()<<endl<<endl;
+            return i;
+        }
+
+
+    }
+    return -1;
+}
+
+Student StudentData::getStudent(int id)
+{
+    for ( int i= 0;  i < numSt ; i++)
+    {
+        if (st[i].getId() == id)
+        {
+            return st[i];
+        }
+
+    }
+    return st[0];
+}
+
+void StudentData::deleteStudent(int id)
+{
+    Student *ptr = NULL ;
+    for ( int i= 0;  i < numSt ; i++)
+    {
+        if (st[i].getId() == id)
+        {
+            ptr = &st[i] ;
+            delete ptr;
+            ptr = NULL;
+        }
+
+    }
+}
+
+
+
+
+-------->
+Main.cpp
+
+#include "Student.h"
+#include <iostream>
+using namespace std;
+#include <string>
+
+
+
+int main()
+{
+    Student s[6]{{"shakil",123,3.04,"ECE"},{"Sunny",132,3.5,"ECE"},{"Rony",142,3.9,"ECE"}
+    ,{"AsifMahmud",12,3.56,"ECE"},{"shakib",183,3.34,"BBA"},{"Nahid",103,3.11,"ECE"}};
+
+
+    StudentData st(6);
+    for (int i = 0; i < 6; i++)
+    {
+        st.add(s[i]);
+    }
+
+    //search student by ID.
+    int id;
+    cout<<"Enter a id (To search): "<<endl;
+    cin>>id;
+    int n1 = st.searchStudent(id);
+
+
+     //search student by Name.
+     string str;
+     cout<<"Enter a name (To search): "<<endl;
+     cin>>str;
+     int n2 = st.searchStudent(str);
+
+    //search student by id(retuen objetc)
+    int ID;
+    cout<<"Enter a id : "<<endl;
+    cin>>ID;
+    Student st1 = st.getStudent(ID);
+
+  //st.deleteStudent(123);
+  //    st.print();
+
+
+}
+

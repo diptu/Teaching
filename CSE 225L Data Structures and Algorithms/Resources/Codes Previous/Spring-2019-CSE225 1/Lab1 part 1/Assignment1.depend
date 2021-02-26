@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1549221271 source:c:\users\takin\desktop\assignment1\main.cpp
+	"student.h"
+	<iostream>
+
+1549221911 c:\users\takin\desktop\assignment1\student.h
+	<string>
+

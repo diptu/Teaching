@@ -1,0 +1,25 @@
+#include "dynarr.h"
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+	dynArr x;
+	dynArr y(5);
+
+	for (int i=0;i<5;i++)
+	{
+		y.setValue(i,i+10);
+	}
+	for(int i=0;i<5;i++)
+	{
+		cout<<y.getValue(i)<<endl;
+	}
+}
+
+
+
+
+
+

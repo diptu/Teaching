@@ -1,0 +1,110 @@
+Task 1:
+
+#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+
+ int main {
+        int *arr = NULL;
+        int n;
+
+cout << "Enter the number of elements: ";
+cin >> n;
+arr = new int[n];
+
+for (int i = 0; i < n; i++){
+   cin >> arr[i];
+}
+for (int j = 0; j < n; j++){
+      cout << arr[j] <<endl;
+
+
+}
+delete [] arr;
+arr = NULL;
+
+return 0;
+
+}
+
+
+
+Task 2:
+
+
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+   int row, col, i, j, k;
+char **arr;
+cin >> row >> col;
+arr = new char*[row];
+for(i=0; i<row; i++){
+   arr[i] = new char[col];
+}
+
+for(j=0;j<row;j++){
+            for(k=0;k<col;j++)
+                cin>>arr[j][k];
+}
+ for(j=0;j<row;j++){
+            for(k=0;k<col;j++)
+                cout<<arr[j][k]<<endl;
+}
+
+for(i=0; i<row; i++){
+   delete [] arr[i];
+delete [] arr;
+arr=NULL;
+}
+    return 0;
+}
+
+
+Task 3:
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+   int row, col, i, j, k;
+int **arr;
+cin >> row;
+arr = new int*[row];
+for(i=0; i<row; i++){
+    cin>>col;
+   arr[i] = new int[col];
+}
+
+for(j=0;j<row;j++){
+            for(k=0;k<col;j++)
+                cin>>arr[j][k];
+}
+ for(j=0;j<row;j++){
+            for(k=0;k<col;j++)
+                cout<<arr[j][k]<<endl;
+}
+
+for(i=0; i<row; i++){
+   delete [] arr[i];
+delete [] arr;
+arr=NULL;
+}
+    return 0;
+}
+
+
+//couldn't figure this out as my PC is not working, sir. I'll get it fixed. This won't happen.
+
+
+
+
+
+

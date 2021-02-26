@@ -1,0 +1,142 @@
+#include "complex.h"
+#include <iostream>
+using namespace std;
+
+Complex::Complex()
+{
+    real=0;
+    imaginary=0;
+}
+
+Complex::Complex(double r, double i)
+{
+    real=r;
+    imaginary=i;
+}
+
+Complex Complex::operator+(Complex a)
+{
+    Complex t;
+    t.real=real+a.real;
+    t.imaginary=imaginary+a.imaginary;
+    return t;
+}
+
+void Complex::Print()
+{
+    cout<<real<<endl<<imaginary<<endl;
+}
+
+Complex operator-(Complex &a, Complex &b)
+{
+    Complex t;
+    t.real=a.real-b.real;
+    t.imaginary=a.imaginary-b.imaginary;
+    return t;
+}
+
+Complex operator-(Complex &a, int value)
+{
+    Complex t;
+    t.real=a.real-value;
+    t.imaginary=a.imaginary-value;
+    return t;
+}
+
+Complex operator-(int value, Complex &a)
+{
+    Complex t;
+    t.real=value-a.real;
+    t.imaginary=value-a.imaginary;
+    return t;
+}
+
+Complex operator*(Complex &a, Complex &b)
+{
+    Complex t;
+    t.real=(a.real*b.real)-(a.imaginary*b.imaginary);
+    t.imaginary=(a.imaginary*b.real)+(a.real*b.imaginary);
+    return t;
+}
+
+Complex operator*(int value, Complex &a)
+{
+    Complex t;
+    t.real=a.real*value;
+    t.imaginary=a.imaginary*value;
+    return t;
+}
+
+Complex operator*(Complex &a, int value)
+{
+    Complex t;
+    t.real=a.real*value;
+    t.imaginary=a.imaginary*value;
+    return t;
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+#ifndef COMPLEX_H_INCLUDED
+#define COMPLEX_H_INCLUDED
+
+class Complex
+{
+    friend Complex operator-(Complex &a, Complex &b);
+    friend Complex operator-(int value, Complex &a);
+    friend Complex operator-(Complex &a, int value);
+    friend Complex operator*(Complex &a, Complex &b);
+    friend Complex operator*(int value, Complex &a);
+    friend Complex operator*(Complex &a, int value);
+
+public:
+    Complex();
+    Complex(double, double);
+    Complex operator+(Complex);
+    void Print();
+
+private:
+    double real, imaginary;
+};
+
+#endif COMPLEX_H_INCLUDED
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+#include<iostream>
+#include "complex.h"
+using namespace std;
+
+int main()
+{
+    Complex A(2, 3), B(3, 1), A1, S1, S2, S3, M1, M2, M3;
+
+    A1=B.operator+(A);
+    A1.Print();
+    cout<<endl;
+
+    S1=operator-(A, B);
+    S1.Print();
+    cout<<endl;
+
+    S2=operator-(2, A);
+    S2.Print();
+    cout<<endl;
+
+    S3=operator-(A, 1);
+    S3.Print();
+    cout<<endl;
+
+    M1=operator*(A, B);
+    M1.Print();
+    cout<<endl;
+
+    M2=operator*(3, A);
+    M2.Print();
+    cout<<endl;
+
+    M3=operator*(A, 2);
+    M3.Print();
+    cout<<endl;
+}

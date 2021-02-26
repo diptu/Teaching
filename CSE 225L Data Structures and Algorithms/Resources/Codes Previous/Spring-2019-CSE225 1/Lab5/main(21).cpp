@@ -1,0 +1,42 @@
+#include <iostream>
+#include <list>
+#include <string>
+#include <cctype>
+
+
+bool compare_nocase (const std::string& first, const std::string& last)
+{
+  unsigned int i=0;
+  while ( (i<first.length()) && (i<last.length()) )
+  {
+    if (tolower(first[i])<tolower(last[i])) return true;
+    else if (tolower(first[i])>tolower(last[i])) return false;
+    ++i;
+  }
+  return ( first.length() < last.length() );
+}
+
+int main ()
+{
+  std::list<std::string> mylist;
+  std::list<std::string>::iterator it;
+  mylist.push_back ("one");
+  mylist.push_back ("two");
+  mylist.push_back ("Three");
+
+  mylist.sort();
+
+  std::cout << "mylist contains:";
+  for (it=mylist.begin(); it!=mylist.end(); ++it)
+    std::cout << ' ' << *it;
+  std::cout << '\n';
+
+  mylist.sort(compare_nocase);
+
+  std::cout << "mylist contains:";
+  for (it=mylist.begin(); it!=mylist.end(); ++it)
+    std::cout << ' ' << *it;
+  std::cout << '\n';
+
+  return 0;
+}
