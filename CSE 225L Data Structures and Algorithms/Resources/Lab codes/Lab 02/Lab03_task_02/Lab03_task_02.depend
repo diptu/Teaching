@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1614953869 source:c:\users\lenovo\documents\teaching\cse 225l data structures and algorithms\resources\lab codes\lab 02\lab03_task_02\main.cpp
+	"complex.h"
+	<iostream>
+
+1614954028 c:\users\lenovo\documents\teaching\cse 225l data structures and algorithms\resources\lab codes\lab 02\lab03_task_02\complex.h
+
+1614953819 source:c:\users\lenovo\documents\teaching\cse 225l data structures and algorithms\resources\lab codes\lab 02\lab03_task_02\complex.cpp
+	"complex.h"
+	<iostream>
+
