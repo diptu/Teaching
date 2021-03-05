@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1614950931 source:c:\users\lenovo\documents\teaching\cse 225l data structures and algorithms\resources\lab codes\lab 02\lab03\main.cpp
+	"dynarr.h"
+	"dynarr.cpp"
+	<iostream>
+
+1614950188 c:\users\lenovo\documents\teaching\cse 225l data structures and algorithms\resources\lab codes\lab 02\lab03\dynarr.h
+
+1614950147 source:c:\users\lenovo\documents\teaching\cse 225l data structures and algorithms\resources\lab codes\lab 02\lab03\dynarr.cpp
+	"dynarr.h"
+	<iostream>
+
+1614950147 c:\users\lenovo\documents\teaching\cse 225l data structures and algorithms\resources\lab codes\lab 02\lab03\dynarr.cpp
+	"dynarr.h"
+	<iostream>
+
