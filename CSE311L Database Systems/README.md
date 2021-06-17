@@ -12,8 +12,6 @@ Pre-requisites |	CSE 225
   1. To make students comprehend the advantages of using database system over flat files.
   2. To get students familiar with requirement analysis specially data requirements of an organization.
   3. To introduce the conceptual design from requirement analysis using E-R diagrams and also mapping ER diagrams into relational schema.
-  4. To introduce the basics and usage of relational algebra that are the foundation of SQL.
-  5. To transform a relational design into physical database design using popular commercialized database, e.g., Oracle, MySQL etc.
-  6. To demonstrate and show the evils of redundancy by introducing the concepts of functional dependencies and their types.
-  7. To design full-fledged physical database systems with least redundancy and most optimized manner.
-  8. To build their independent projects emphasizing the data requirement.
+  4. To transform a relational design into physical database design using popular commercialized database, e.g., Oracle, MySQL, PostgreSQL etc.
+  5. To design full-fledged physical database systems with least redundancy and most optimized manner.
+  6. To build their independent projects emphasizing the data requirement.
