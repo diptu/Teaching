@@ -60,8 +60,17 @@ In a relational database system, <code>you must define a schema before adding re
 
 In contrast, a document-oriented database contains documents, which are records that describe the data in the document, as well as the actual data. Documents can be as complex as you choose;<code> you can use nested data to provide additional sub-categories of information about your object. You can also use one or more document to represent a real-world object <sup>[5]</sup>.</code>
 
+**Entity :** Entity in DBMS can be a real-world object with an existence, For example, in a our NSU RDS database, the entities can be Faculty, Students, Courses, etc.
+
+**Attribute :** A real-world property of an entity type is called an attribute. This is the characteristics of an entity. Each attribute can take only a set of permitted values. This is called the domain of that attribute. For example, we define the <code>roll_no of the ‘Student’ by a numeric value. So, the permitted values are only integers and hence, ‘integer’ is the domain of attribute ‘roll_no’.</code> Each attribute is represented by a separate column in a relational table.
+
+<b>For example,</b> The entity ‘Student’ has properties like Name, Address, Roll_no, Mobile_no, Age, DOB (Date of Birth), Class, Section, etc. So, when we make an E-R diagram then Name, Address, Roll_no, Mobile_no, Age, DOB, Section and Class are represented as the attributes of the entity type ‘Student’.
+
+<div style="text-align: center"><img src="attribute.jpg" width="300" height=300"/></div></br>
+
 [[1] Why Should We Learn DBMS?](https://www.quora.com/Why-should-I-study-DBMS)<br>
 [[2] What is a Relational Database (RDBMS)?](https://www.oracle.com/database/what-is-a-relational-database/)<br>
 [[3] Key Difference between DBMS and RDBMS?](https://stackoverflow.com/questions/18419137/what-is-the-difference-between-dbms-and-rdbms)<br>
 [[4] What is the difference between SQL and MySQL or SQL Server?](https://www.quora.com/What-is-the-difference-between-SQL-and-MySQL-or-SQL-Server)<br>
 [[5] SQL vs. NoSQL Databases: What’s the Difference?](https://medium.com/@itIsMadhavan/sql-vs-nosql-databases-whats-the-difference-a05492b48d99)<br>
+[[6] What is an attribute?](https://afteracademy.com/blog/what-is-an-attribute)<br>
