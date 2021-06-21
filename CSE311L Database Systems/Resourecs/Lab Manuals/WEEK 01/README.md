@@ -35,6 +35,11 @@ SQL is a language that is used to operate your database. SQL is the basic langua
 **What is SQL :**
 SQL is used in <code><b>accessing, updating, and manipulation of data in a database. Its design allows for the management of data in an RDBMS, such as MYSQL. SQL language also used for controlling data access and for the creation and modification</b></code> of database schemas <sup>[4]</sup>.
 
+SQL contains three parts:
+
+    1. Data definition language includes statements that help you define the database and its objects, e.g., tables, views, triggers, stored procedures, etc.
+    2. Data manipulation language contains statements that allow you to update and query data.
+    3. Data control language allows you to grant the permissions to a user to access specific data in the database.
 
 **What is MySQL :**
 Developed in the mid-90s., MySQL was one of the first open-source database available in the market. Today there are many alternatives variants of MySQL. However, the differences between the variants are not significant as they use the same syntax, and basic functionality also remains the same.
