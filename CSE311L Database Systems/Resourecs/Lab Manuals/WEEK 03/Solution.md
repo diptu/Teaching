@@ -1,47 +1,57 @@
-### LAB-Week 03 (Part A)
+### LAB-Week 04 (Part A)
 **Activity 01:**
-Display the employee last name, job ID, and start date of employees hired between February 20, 1998, and May 1, 1998. Order the query in ascending order by start date.
-![Employees Data](employees_data.jpg "Employees sample data")
+Write a query to display the last name, department number, and department name for
+all employees.
+
 ~~~~SQL
-SELECT LAST_NAME, JOB_ID, HIRE_DATE
-FROM EMPLOYEES
-WHERE HIRE_DATE BETWEEN '1998-02-02' AND '1998-05-01'
+SELECT e.lname, e.dept_id, d.name
+from employees e
+join departments d
+on e.dept_id = d.id;
 ~~~~
 
 **Activity 02:**
-Display the last name and department number of all employees in departments 20 and 50 in alphabetical order by name.
+Write a query to display the employee last name, department name, location ID, and city of all employees who earn a commission.
 ~~~~SQL
-SELECT LAST_NAME, DEPTARTMENT_ID
-FROM EMPLOYEES
-WHERE DEPTARTMENT_ID IN (20,50)
-ORDER BY LAST_NAME
+SELECT e.lname, d.name,l.id as "Location ID", l.city
+from employees e
+join departments d
+on e.dept_id = d.id
+join locations l
+on l.id = d.location_id
+WHERE commission_pct is not null;
 ~~~~
-### LAB-Week 03 (Part B)
+
+### LAB-Week 04 (Part B)
 
 **Activity 01:**
-Display the last name and hire date of every employee who was hired in 1994.
-
+Write a query to display the last name, job, department number, and department name for all employees who work in Toronto.
 ~~~~SQL
-SELECT LAST_NAME, HIRE_DATE
-FROM EMPLOYEES
-WHERE HIRE_DATE like '1994-__-__'
+SELECT e.lname, e.job_id, e.dept_id, d.name
+FROM employees e
+join departments d
+ON e.dept_id = d.id
+join locations l
+on l.id = d.location_id
+WHERE l.city = 'Toronto';
 ~~~~
-
 **Activity 02:**
-Display the last name, salary, and commission for all employees who earn commissions. Sort data in descending order of salary and commissions.
-
+Display the last name, salary, and commission for all employees who earn commissions. Sort data in descending order of salary and commissions and Title.
 ~~~~SQL
-SELECT LAST_NAME, SALARY, COMMISSION_PCT
-FROM EMPLOYEES
-WHERE COMMISSION_PCT IS NOT NULL
-ORDER BY SALARY,COMMISSION_PCT DESC
+SELECT lname, salary, commission_pct
+FROM employees
+WHERE commission_pct is not null
+ORDER by commission_pct, job_id DESC;
 ~~~~
 
 **Activity 03:**
-Display the last name of all employees who have an a and an e in their last name.
-
+Display the employee last name and employee number along with their manager’s last name and manager number. Label the columns Employee, Emp#, Manager, and Mgr#,
+respectively.
 ~~~~SQL
-SELECT LAST_NAME
-FROM EMPLOYEES
-WHERE LAST_NAME LIKE '%a%' and '%e%';
+SELECT
+	e.lname as "Employee", e.id as "EMP#",
+	m.lname as "Manager", m.id as "Mgr#"
+from employees e
+join employees m
+on e.manager_id = m.id ;
 ~~~~
