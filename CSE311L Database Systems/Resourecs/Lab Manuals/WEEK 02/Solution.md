@@ -51,7 +51,7 @@ Display the last name, salary, and commission for all employees who earn commiss
 SELECT LAST_NAME, SALARY, COMMISSION_PCT
 FROM EMPLOYEES
 WHERE COMMISSION_PCT IS NOT NULL
-ORDER BY SALARY,COMMISSION_PCT DESC
+ORDER BY SALARY DESC,COMMISSION_PCT DESC
 ~~~~
 
 **Activity 03:**
