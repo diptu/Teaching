@@ -1,4 +1,4 @@
-### LAB-Week 04 (Part A)
+### LAB-Week 03 (Part A)
 **Activity 01:**
 Write a query to display the last name, department number, and department name for
 all employees.
@@ -22,7 +22,7 @@ on l.id = d.location_id
 WHERE commission_pct is not null;
 ~~~~
 
-### LAB-Week 04 (Part B)
+### LAB-Week 03 (Part B)
 
 **Activity 01:**
 Write a query to display the last name, job, department number, and department name for all employees who work in Toronto.
