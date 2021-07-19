@@ -99,3 +99,55 @@ INSERT INTO `addresses` ( `street_address`, `postal_code`, `city`, `state_provin
 ('Magdalen Centre- The Oxford Sc. Park', 'OX9 9ZB', 'OXford', 'Oxford', 'UK',103);
 
 ~~~~
+
+Suppose employee can work in multiple projects & several employees can work in a single project.
+
+-- We can have a table like this
+~~~~SQL
+CREATE TABLE employee_project_tmp (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  project_id INT(11) NOT NULL,
+  project_name VARCHAR(30),
+  employee_id INT(11) NOT NULL,
+  FOREIGN KEY (employee_id)
+      REFERENCES employees (id),
+  FOREIGN KEY (project_id)
+      REFERENCES projects (id)
+);
+
+INSERT INTO employee_project_tmp(project_id, project_name, employee_id) VALUES
+(1, 'Batman', 100),(1, 'Batman', 101), (2, 'Casanova', 100),(2, 'Casanova', 102);
+~~~~
+
+But here we have a partial dependency. Project name only dependent on project_id but not employee_id.
+
+**<code><b>2NF: 2nd Normal Form</b></code>**
+
+      1. Must be in 1NF.
+      2. Deals with partial dependency.
+In case of many to many relationship we should have 3 tables. Two main tables, here employees & projects and one derived/week table.
+
+~~~~SQL
+CREATE TABLE projects (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    project_name VARCHAR(30) NOT NULL,
+    start_date DATE,
+    end_date DATE
+);
+
+INSERT INTO projects(project_name,start_date, end_date ) VALUES
+('Batman', '2021-03-01','2021-06-30'),('Casanova', '2021-07-01',NULL);
+
+CREATE TABLE employee_project (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    project_id INT(11) NOT NULL,
+    employee_id INT(11) NOT NULL,
+    FOREIGN KEY (employee_id)
+        REFERENCES employees (id),
+    FOREIGN KEY (project_id)
+        REFERENCES projects (id)
+);
+
+INSERT INTO employee_project(project_id,employee_id) VALUES
+(1, 100),(1, 101), (2, 100),(2, 102);
+~~~~
