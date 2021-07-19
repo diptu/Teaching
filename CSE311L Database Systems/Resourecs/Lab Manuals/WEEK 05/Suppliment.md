@@ -38,7 +38,8 @@ INSERT INTO `employees1` (`id`, `fname`, `lname`, `email`, `phone`, `hire_date`,
     3. valid string search using like operator could be difficult/impossible.
 
 **<code><b>1NF: 1st Normal Form</b></code>**
-      -- Every column must be atomic.
+
+Every column must be atomic.
 ~~~~SQL
 CREATE TABLE `employees` (
     `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
@@ -150,4 +151,87 @@ CREATE TABLE employee_project (
 
 INSERT INTO employee_project(project_id,employee_id) VALUES
 (1, 100),(1, 101), (2, 100),(2, 102);
+~~~~
+Suppose we want to store job responsibility for each job_id. We can do something like this :
+
+~~~~SQL
+CREATE TABLE `employees2` (
+    `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
+    `fname` VARCHAR(20) DEFAULT NULL,
+    `lname` VARCHAR(20) NOT NULL,
+    `phone` VARCHAR(20) DEFAULT NULL,
+    `hire_date` DATE NOT NULL,
+    `job_id` VARCHAR(20) NOT NULL,
+    `job_responsibility` VARCHAR(250) NOT NULL,
+    `salary` DECIMAL(10 , 2 ) DEFAULT NULL,
+    `commission_pct` DECIMAL(4 , 2 ) DEFAULT NULL,
+    `manager_id` INT(11) DEFAULT NULL,
+    `dept_id` INT(11) DEFAULT NULL
+);
+
+
+INSERT INTO `employees2` ( `id`, `fname`, `lname`, `phone`, `hire_date`, `job_id`, `job_responsibility`,`salary`, `commission_pct`, `manager_id`, `dept_id`) VALUES
+(100, 'Steven', 'King',  '515.123.4567', '2006-06-17', 'AD_PRES', 'Administrative president', '24000.00', NULL, NULL, 90),
+(101, 'Neena', 'Kochar',  '515.123.4568', '2008-09-21', 'AD_VP', 'Administrative vice-president','17000.00', NULL, 100, 90),
+(102, 'Lex', 'De Haan',  '515.123.4569', '2009-01-13', 'AD_VP', 'Administrative vice-president', '17000.00', NULL, 100, 90),
+(103, 'Alexander', 'Hunold', '590.423.4567', '2008-01-03', 'IT_PROG','Information Technology Programmer', '9000.00', NULL, 102, 60);
+
+~~~~
+**<code><b>3NF: 3rd Normal Form</b></code>**
+
+Here, We have transitive functional dependency. id determines jpb_id & job_id determines job_responsibility.
+
+In such cases we need to break down the table into two employees and jobs.
+~~~~SQL
+CREATE TABLE `employees` (
+    `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
+    `fname` VARCHAR(20) DEFAULT NULL,
+    `lname` VARCHAR(20) NOT NULL,
+    `phone` VARCHAR(20) DEFAULT NULL,
+    `hire_date` DATE NOT NULL,
+    `job_id` int NOT NULL,
+    `salary` DECIMAL(10 , 2 ) DEFAULT NULL,
+    `commission_pct` DECIMAL(4 , 2 ) DEFAULT NULL,
+    `manager_id` INT(11) DEFAULT NULL,
+    `dept_id` INT(11) DEFAULT NULL
+);
+
+CREATE TABLE `jobs` (
+    `id` int(11) PRIMARY KEY auto_increment,
+    `job_type` varchar(20) not null,
+    `job_responsibility` VARCHAR(250) NOT NULL
+);
+~~~~
+
+Suppose each project is sponsored by an Organization. Now we want to store that organization information. We may do something like this
+~~~~SQL
+CREATE TABLE `employee_project_organizer` (
+    `employee_id` int(11) not null,
+    `project_id` int not null,
+    `organization_id` int NOT NULL
+);
+
+~~~~
+**<code><b>3.5NF: Boyce-Codd Normal Form</b></code>**
+
+For a table to satisfy the Boyce-Codd Normal Form, it should satisfy the following two conditions:
+
+It should be in the Third Normal Form. And, for any dependency A → B, A should be a super key.
+
+Why this table is not in BCNF?
+In the table above, employee_id, project_id form primary key, which means project_id column is a prime attribute.
+
+But, there is one more dependency, organization_id → project_id.
+
+And while project_id is a prime attribute, organization_id is a non-prime attribute, which is not allowed by BCNF.
+
+~~~SQL
+CREATE TABLE `employee_project` (
+    `employee_id` int(11) not null,
+    `project_id` int not null
+);
+CREATE TABLE `organizer_project` (
+    `organizer_id` int(11) not null,
+    `project_id` int not null
+);
 ~~~~
