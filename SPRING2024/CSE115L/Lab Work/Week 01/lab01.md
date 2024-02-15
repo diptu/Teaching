@@ -1,7 +1,12 @@
-<img src="./nsu-logo.png" align="left" width="100px" height="100px"/>
-<p align="center">Name :<br>ID :<br>Section :<br>
+<div align="center">
+<img src="./nsu-logo.png"  width="100px" height="100px"/>
+
+<p style="text-align:center"><h3>CSE115L Week:01  Lab: 01</h3>
+Name:<br>
+ID:<br>
+Section:<br>
 </p>
-<h3> CSE115L Week:01  Lab: 01</h1>
+</div>
 <br clear="left"/>
 
 
