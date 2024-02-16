@@ -1,6 +1,5 @@
 <div align="center">
 <img src="./nsu-logo.png"  width="100px" height="100px"/>
-
 <p style="text-align:center"><h3>CSE115L Week:01  Lab: 01</h3>
 Name:<br>
 ID:<br>
@@ -8,7 +7,6 @@ Section:<br>
 </p>
 </div>
 <br clear="left"/>
-
 
 ### Example 1: Write a program that prints:
 
@@ -45,24 +43,25 @@ return
 ~~~~
 <div style="page-break-after: always;"></div>
 
-#### Example 3: Write a program that reads in the radius of a circle and prints the circle’s diameter circumference and area.
-
+### Example 3: Data types and their size in C
 ~~~~C
 #include<stdio.h>
+
 int main()
 {
-float const PI = 3.142;
-float radius;
-float area, circumference, diameter;
-printf("Enter the radius of a circle:");
-scanf("%f",&radius);
-diameter= 2*radius;
-circumference= 2*PI*radius;
-area= PI * radius * radius;
-printf("The Diameter is: %.2f \n",diameter);
-printf("The Circumference is: %.2f \n",circumference);
-printf("The area is: %.2f \n",area);
-return 0;
+    int a;
+    float b;
+    double c;
+    char d;
+    long int longInt;
+    signed int no;
+    printf("Size of int: %d bytes\n",sizeof(a));
+    printf("Size of float: %d bytes\n",sizeof(b));
+    printf("Size of double: %d bytes\n",sizeof(c));
+    printf("Size of char: %d byte\n",sizeof(d));
+    printf("Size of Long int: %d byte\n",sizeof(longInt));
+    printf("Size of signed int: %d byte\n",sizeof(no));
+    return 0;
 }
 ~~~~
 
