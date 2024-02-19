@@ -15,11 +15,11 @@ Section:<br>
 
 ~~~~C
 #include<stdio.h>
-#include<stdlib.h>
 int main()
 {
 printf("\t \" North South University\" \n \n");
 printf("Hello class of cse115L!! Welcome to NSU. \n");
+return 0;
 }
 ~~~~
 
